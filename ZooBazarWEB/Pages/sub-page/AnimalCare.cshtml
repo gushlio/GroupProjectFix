@@ -1,0 +1,70 @@
+﻿@page
+@model ZooBazarWEB.Pages.sub_page.AnimalCareModel
+@{
+    ViewData["Title"] = "Animal Care";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/styles.css" /> <!-- Link to external CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <h2>Animal Health Status</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Animal</th>
+                    <th>Species</th>
+                    <th>Health Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Animals == null || !Model.Animals.Any())
+                {
+                    <tr>
+                        <td colspan="4">No animals found.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var animal in Model.Animals)
+                    {
+                        <tr>
+                            <td>@animal.Name</td>
+                            <td>@animal.Species</td>
+                            <td>@animal.HealthStatus</td>
+                            <td>
+                                @if (animal.HealthStatus == "Sick")
+                                {
+                                    <button onclick="provideCare('@animal.Name')">Provide Care</button>
+                                }
+                                else
+                                {
+                                    <span>No action needed</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <p>If you have any questions or need assistance, please contact the zoo's veterinary.</p>
+    </div>
+
+    <script>
+        function provideCare(animalName) {
+            // Implement logic to provide care for the specified animal
+            alert('Care provided for ' + animalName);
+        }
+    </script>
+</body>
+</html>

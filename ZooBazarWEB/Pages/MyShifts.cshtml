@@ -1,0 +1,28 @@
+﻿@page
+@model ZooBazaarWebApp.Pages.MyShiftsModel
+@{
+	ViewData["Title"] = "My Shifts";
+}
+
+<div class="container mt-5 p-5">
+    <h2 class="mb-4">My Shifts</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Day</th>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var shift in Model.Shifts)
+                {
+                    <tr>
+                        <td>@shift.DayOfWeek</td>
+                        <td>@shift.ShiftTime</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@page
+@model ZooBazaarWebApp.Pages.PurchaseTicketModel
+@{
+}
+
+   
+<section class="bg-white text-dark p-5 pt-lg-5 text-center text-sm-start">
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card shadow p-4">
+                    <div class="card-header text-center">
+                        <h2 class="card-title">Select Your Tickets</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="form-group mb-4">
+                                <label for="visitDate">Select Visit Date:</label>
+                                <input type="date" class="form-control" id="visitDate" name="visitDate" required />
+                            </div>
+                            <div class="row">
+                                @foreach (var ticket in Model.TicketSelection.AvailableTickets)
+                                {
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">@ticket.Type</h5>
+                                                <p class="card-text">@ticket.Description</p>
+                                                <p class="card-text">Price: $@ticket.Price</p>
+                                                <div class="form-group">
+                                                    <label for="quantity-@ticket.Type">Quantity:</label>
+                                                    <input type="number" class="form-control" id="quantity-@ticket.Type" name="selectedTickets[@ticket.Type]" value="0" min="0" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg mt-4 earth-yellow">Next</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

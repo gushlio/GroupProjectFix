@@ -1,0 +1,49 @@
+﻿@page
+@model ZooBazarWEB.Pages.sub_page.TaskModel
+@{
+    ViewData["Title"] = "Task Management";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/styles.css" /> <!-- Link to external CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <h2>Assigned Tasks</h2>
+        <ul>
+            <li>
+                <strong>Task 1:</strong> Fix the broken fence in the lion enclosure.
+                <button onclick="completeTask(1)">Complete</button>
+            </li>
+            <li>
+                <strong>Task 2:</strong> Clean the elephant barn.
+                <button onclick="completeTask(2)">Complete</button>
+            </li>
+            <!-- Add more tasks as needed -->
+        </ul>
+
+        <h2>Add New Task</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="taskDescription">Task Description:</label>
+                <input type="text" id="taskDescription" name="taskDescription" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+    </div>
+
+    <script>
+        function completeTask(taskId) {
+            // Implement logic to mark the task as completed
+            alert('Task ' + taskId + ' marked as completed!');
+        }
+    </script>
+</body>
+</html>

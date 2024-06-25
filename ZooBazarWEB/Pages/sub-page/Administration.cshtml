@@ -1,0 +1,48 @@
+﻿@page
+@model ZooBazarWEB.Pages.sub_page.AdministrationModel
+@{
+    ViewData["Title"] = "Administration";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/styles.css" /> <!-- Link to external CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <h2>Manage Employees</h2>
+        <ul>
+            <li><a href="/administration/employees">View Employees</a></li>
+            <li><a href="/administration/employees/add">Add Employee</a></li>
+            <li><a href="/administration/employees/modify">Modify Employee</a></li>
+            <li><a href="/administration/employees/delete">Delete Employee</a></li>
+        </ul>
+
+        <h2>Manage Animals</h2>
+        <ul>
+            <li><a href="/administration/animals">View Animals</a></li>
+            <li><a href="/administration/animals/add">Add Animal</a></li>
+            <li><a href="/administration/animals/modify">Modify Animal</a></li>
+            <li><a href="/administration/animals/delete">Delete Animal</a></li>
+        </ul>
+
+        <h2>Manage Exhibits</h2>
+        <ul>
+            <li><a href="/administration/exhibits">View Exhibits</a></li>
+            <li><a href="/administration/exhibits/add">Add Exhibit</a></li>
+            <li><a href="/administration/exhibits/modify">Modify Exhibit</a></li>
+            <li><a href="/administration/exhibits/delete">Delete Exhibit</a></li>
+        </ul>
+
+        <!-- Other administrative tasks can be added as needed -->
+
+        <p>If you have any questions or need assistance, please contact the zoo's IT department.</p>
+    </div>
+</body>
+</html>

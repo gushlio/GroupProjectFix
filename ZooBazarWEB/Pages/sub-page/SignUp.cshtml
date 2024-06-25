@@ -1,0 +1,24 @@
+﻿@page
+@model ZooBazarWEB.Pages.sub_page.SignUpModel
+@{
+}
+
+<center>
+    <body>
+        <div class="container">
+            <form method="post">
+                <h2>Sign Up</h2>
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <button type="submit">Sign Up</button>
+
+                @if (!ModelState.IsValid)
+                {
+                    <div class="text-danger">
+                        <p>@Html.ValidationMessage("UsernameTaken")</p>
+                    </div>
+                }
+            </form>
+        </div>
+    </body>
+</center>

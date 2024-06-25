@@ -1,0 +1,92 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<section class="bg-white text-dark p-5 pt-lg-5 text-center text-sm-start">
+    <div class="container pt-5">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+                <h1 class="">Where Every Step is a <span class="earth-yellow-text">Safari Adventure!</span></h1>
+                <p class="fs-5 my-3 mb-5">
+                    Immerse yourself in a world of wonder as you journey through our <a class="earth-yellow-text" asp-page="/Exhibits">diverse exhibits</a>
+                    featuring <a class="earth-yellow-text" asp-page="/Animals">exotic animals</a> from around the globe.
+                </p>
+                <a class="btn btn-primary btn-lg earth-yellow" asp-page="/PurchaseTicket">Buy Tickets</a>
+
+            </div>
+            <img class="img-fluid w-50 d-none d-sm-block mx-3" src="https://www.pngarts.com/files/1/Zoo-Transparent-Background-PNG.png" />
+        </div>
+    </div>
+</section>
+
+<!-- CONTENT DISPLAY 1 -->
+
+<section class="nyanza text-dark p-5 pt-lg-5 text-center text-sm-start">
+    <div class="container">
+        <h1 class="mb-4">Discover more about us!</h1>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-5">
+                <div class="card">
+                    <div class="image-container">
+                        <a class="" asp-page="/Animals">
+                            <img class="img-fluid mx-auto d-block mb-3" src="~/img/jaguar1.jpg" />
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <h2>Our Animals</h2>
+                                    <p>From the majestic African elephants to the agile South American jaguars, each animal has a unique story to share.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5">
+                            Dive into the world of wildlife with detailed profiles and stunning photographs that bring the natural world closer to you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-5">
+                <div class="card">
+                    <div class="image-container">
+                        <a class="" asp-page="/Exhibits">
+                            <img class="img-fluid mx-auto d-block mb-3" src="~/img/gorillaHabitat.jpg" />
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <h2>Our Exhibits</h2>
+                                    <p>Immerse yourself in a world of wonder as you journey through our diverse exhibits featuring exotic animals from around the globe.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5">
+                            Each exhibit is designed to mimic the natural habitats of our residents, providing them with a safe and enriching environment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-5">
+                <div class="card">
+                    <div class="image-container">
+                        <a class="" asp-page="/PlanYourVisit">
+                            <img class="img-fluid mx-auto d-block mb-3" src="~/img/zoo1.jpg" />
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <h2>Plan Your Visit</h2>
+                                    <p>Whether you're a first-time visitor or a seasoned zoo enthusiast, this page is your ultimate guide to making the most out of your experience.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <p class="fs-5">
+                            Find essential information such as admission prices, opening hours, and directions to our location in Eindhoven, Netherlands.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

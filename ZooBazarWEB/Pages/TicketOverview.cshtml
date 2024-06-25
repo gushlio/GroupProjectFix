@@ -1,0 +1,74 @@
+﻿@page
+@using ZooBazaarWebApp.Model
+@model ZooBazaarWebApp.Pages.TicketOverviewModel
+@{
+}
+
+
+<section class="bg-white text-dark p-5 pt-lg-5 text-center text-sm-start">
+    <div class="container mt-5 pt-5">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow p-4">
+                    <div class="card-header text-center">
+                        <h2 class="card-title">Ticket Overview</h2>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.TicketSelection.SelectedTickets != null && Model.TicketSelection.SelectedTickets.Count > 0)
+                        {
+                            @if (Model.TicketSelection.VisitDate != DateTime.MinValue)
+                            {
+                                <h4 class="mb-4">Visit Date: @Model.TicketSelection.VisitDate.ToString("MMMM dd, yyyy")</h4>
+                            }
+                            else
+                            {
+                                <h4 class="mb-4">Visit Date: Not Set</h4>
+                            }
+                            <ul class="list-group mb-3">
+                                @foreach (var item in Model.TicketSelection.SelectedTickets)
+                                {
+                                    Ticket ticket = null;
+                                    foreach (var t in Model.TicketSelection.AvailableTickets)
+                                    {
+                                        if (t.Type == item.Key)
+                                        {
+                                            ticket = t;
+                                            break;
+                                        }
+                                    }
+                                    if (ticket != null)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            @ticket.Description (@ticket.Type)
+                                            <span>@item.Value x $@ticket.Price</span>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                            <div class="d-flex justify-content-between">
+                                <h4>Total</h4>
+                                <h4>$@Model.TicketSelection.TotalPrice</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <p>No tickets selected. Please go back and select tickets.</p>
+                        }
+                    </div>
+                    <div class="card-footer text-center">
+                        <div class="row">
+                            <div class="col">
+                                <a href="/PurchaseTicket" class="btn btn-primary btn-block mt-4 earth-yellow">Back to Tickets</a>
+                            </div>
+                            <div class="col">
+                                <form method="post">
+                                    <button type="submit" class="btn btn-primary btn-block mt-4 earth-yellow">Proceed to Payment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

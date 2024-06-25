@@ -1,0 +1,57 @@
+﻿@page
+@model ZooBazarWEB.Pages.sub_page.Landing_pageModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/styles.css" /> <!-- Link to external CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Zoo!</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/animals">Animals</a></li>
+            <li><a href="/exhibits">Exhibits</a></li>
+            <li><a href="/tickets">Tickets</a></li>
+            <li><a href="/about">About Us</a></li>
+            <!-- Add more navigation links as needed -->
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Featured Animals</h2>
+            <!-- Add images and brief descriptions of featured animals -->
+            <div class="animal-card">
+                <img src="/images/lion.jpg" alt="Lion">
+                <p>The majestic lion, king of the savannah.</p>
+            </div>
+            <div class="animal-card">
+                <img src="/images/elephant.jpg" alt="Elephant">
+                <p>The gentle giant, symbol of wisdom and strength.</p>
+            </div>
+            <!-- Add more featured animals as needed -->
+        </section>
+
+        <section>
+            <h2>Upcoming Events</h2>
+            <p>Check out our calendar for exciting events coming soon!</p>
+            <!-- Add a link to the events calendar -->
+            <a href="/events" class="btn">View Events</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Come By soon.</p>
+    </footer>
+</body>
+</html>

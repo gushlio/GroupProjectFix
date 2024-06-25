@@ -1,0 +1,46 @@
+﻿@page
+@model ZooBazaarWebApp.Pages.LoginModel
+@{
+    ViewData["Title"] = "Log In";
+}
+
+<section class="text-dark py-5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center mt-5 pt-5">
+            <div class="col-lg-6 col-md-6">
+                <div class="card shadow p-4">
+                    <h1 class="text-center mb-4">Login</h1>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" asp-for="email" aria-describedby="emailHelp" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" asp-for="password" placeholder="Enter your password">
+                        </div>
+                        @if (!ModelState.IsValid)
+                        {
+
+                            <div class="error-message" style="color:red">
+
+                                @Html.ValidationMessage("emailblabla")
+                            </div>
+                        }
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-block mt-4 earth-yellow">Login</button>
+                        </div>
+                    </form>
+
+
+                    <div class="text-center mt-3">
+                        <a href="/ForgotPassword" class="text-decoration-none text-muted">Forgot password?</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 mt-4 mt-md-0">
+                <img class="img-fluid rounded-circle" src="~/img/login.jpg" alt="Login Image">
+            </div>
+        </div>
+    </div>
+</section>

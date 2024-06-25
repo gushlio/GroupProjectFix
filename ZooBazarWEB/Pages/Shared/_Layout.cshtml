@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Zoo Bazar</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ZooBazarWEB.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white fixed-top">
+            <div class="container-fluid px-5">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <img src="~/img/monkeylogo.png" alt="Zoo Bazaar Logo" class="logo-img"> Zoo Bazaar
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-md-inline-flex justify-content-between">
+                    <ul class="navbar-nav ms-auto">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark me-2" asp-area="" asp-page="/PlanYourVisit">Plan Your Visit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark me-2" asp-area="" asp-page="/Animals">Animals</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark me-2" asp-area="" asp-page="/PurchaseTicket">Purchase Ticket</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary btn-sm px-4 mt-1 earth-yellow mx-2" asp-area="" asp-page="/Login">Log In</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark me-2" asp-area="" asp-page="/MyShifts">My Shifts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark me-2" asp-area="" asp-page="/Details">Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary btn-sm px-4 mt-1 earth-yellow mx-2" asp-area="" asp-page="/Logout">Log Out</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid p-0">
+        <main role="main" class="pb-5">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="p-5">
+        <div class="container">
+            <div class="row justify-content-between">
+                <!-- Explore Section -->
+                <div class="col-md-3 mb-3">
+                    <h5>Explore</h5>
+                    <ul class="list-unstyled">
+                        <li><a asp-page="/PlanYourVisit" class="text-decoration-none text-dark">Plan Your Visit</a></li>
+                        <li><a asp-page="/Animals" class="text-decoration-none text-dark">Animals</a></li>
+                        <li><a asp-page="/Exhibits" class="text-decoration-none text-dark">Exhibits</a></li>
+                        <li><a asp-page="/Login" class="text-decoration-none text-dark">Login</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Section -->
+                <div class="col-md-3 mb-3">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="tel:+1234567890" class="text-decoration-none text-dark">+31 6 10754244</a></li>
+                        <li><a href="mailto:info@zoobazaar.com" class="text-decoration-none text-dark">info@zoobazaar.com</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Map</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">FAQs</a></li>
+                    </ul>
+                </div>
+                <!-- Quick Links -->
+                <div class="col-md-3 mb-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-dark">Privacy Policy</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Terms of Use</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Sitemap</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark">Help</a></li>
+                    </ul>
+                </div>
+                <!-- Social Media Links -->
+                <div class="col-md-3 mb-3">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-dark"><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark"><i class="bi bi-twitter"></i> Twitter</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark"><i class="bi bi-instagram"></i> Instagram</a></li>
+                        <li><a href="#" class="text-decoration-none text-dark"><i class="bi bi-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-muted pt-4 pb-2">
+                © 2024 - Zoo Bazaar
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
