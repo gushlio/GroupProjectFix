@@ -20,36 +20,6 @@ namespace ZooBazaarWebApp.Pages
         [BindProperty]
         public Employee employee { get; set; }
         public List<string> ErrorMessages { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string FirstName { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string LastName { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string Username { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string Email { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string Address { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string PhoneNumber { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string DateOfBirth { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string BSN { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string EmergencyContactInfo { get; set; }
-        //[BindProperty]
-        //[Required]
-        //public string EmergencyContactRelationship { get; set; }
         public async Task<IActionResult> OnGetAsync(int id)
         {
 

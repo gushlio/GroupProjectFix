@@ -16,7 +16,6 @@ namespace ZooBazarDesktopApp
 {
     public partial class ScheduleForm : Form
     {
-        // private fields
         private DateTime _currentDay;
         private Button _currentButton;
         private ShiftManager _shiftManager;
@@ -84,7 +83,6 @@ namespace ZooBazarDesktopApp
                         Tag = currentDate <= DateTime.Now ? null : (object)currentDate
                     };
 
-                    // Prevent editing if the shift is in the past
                     if (currentDate < DateTime.Now.Date)
                     {
                         listItems[i].Enabled = false;
@@ -121,7 +119,7 @@ namespace ZooBazarDesktopApp
                     DisableButtons();
                     _currentButton = btnSender;
                     _currentButton.BackColor = Color.FloralWhite;
-                    _currentButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+                    _currentButton.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);  
                 }
             }
         }
@@ -132,8 +130,8 @@ namespace ZooBazarDesktopApp
             {
                 if (previousBtn.GetType() == typeof(Button))
                 {
-                    previousBtn.BackColor = Color.PaleGoldenrod;
-                    previousBtn.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+                    previousBtn.BackColor = Color.FloralWhite;
+                    previousBtn.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
                 }
             }
         }
@@ -141,7 +139,6 @@ namespace ZooBazarDesktopApp
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            // Load shifts for the previous week
             currentWeekStartDate = currentWeekStartDate.AddDays(-7);
             SetDayButtonDates(currentWeekStartDate);
             LoadCurrentWeek();
@@ -149,7 +146,6 @@ namespace ZooBazarDesktopApp
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            // Load shifts for the next week
             currentWeekStartDate = currentWeekStartDate.AddDays(7);
             SetDayButtonDates(currentWeekStartDate);
             LoadCurrentWeek();

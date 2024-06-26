@@ -34,12 +34,53 @@ namespace ZooBazarDesktopApp
             LoadAllTasksForAdmin();
             UpdateListBox();
 
-            if (loggedEmployee.Contract.JobTitle != "Manager" && loggedEmployee.Contract.JobTitle != "Admin")
+            if (loggedEmployee.Contract != null)
+            {
+                if (loggedEmployee.Contract.JobTitle != "Manager" && loggedEmployee.Contract.JobTitle != "Administrator")
+                {
+                    flowLayoutPanelAdminTasks.Visible = false;
+                    btnAssignTask.Visible = false;
+                    adminComboBox.Visible = false;
+                }
+                else
+                {
+                    adminComboBox.Visible = true;
+                    InitializeAdminComboBox();
+                }
+            }
+            else
             {
                 flowLayoutPanelAdminTasks.Visible = false;
                 btnAssignTask.Visible = false;
+                adminComboBox.Visible = false;
+                btnAddReport.Visible = false;
+                groupBox2.Visible = false;
+
             }
 
+        }
+
+        private void InitializeAdminComboBox()
+        {
+            List<string> adminFilters = new List<string> { "All", "Done", "Not Done" };
+            adminComboBox.DataSource = adminFilters;
+            adminComboBox.SelectedIndexChanged += (sender, e) =>
+            {
+                string selectedFilter = adminComboBox.SelectedItem.ToString();
+
+                if (selectedFilter == "Done")
+                {
+                    LoadAllTasksForAdmin(true); 
+                }
+                else if (selectedFilter == "Not Done")
+                {
+                    LoadAllTasksForAdmin(false); 
+                }
+                else
+                {
+                    LoadAllTasksForAdmin(); 
+                }
+            };
         }
 
         private void InitializeCategoryComboBox()
@@ -48,6 +89,7 @@ namespace ZooBazarDesktopApp
             categoryComboBox.DataSource = categories;
             categoryComboBox.SelectedIndexChanged += (sender, e) =>
             {
+                selectedCategory = categoryComboBox.SelectedItem.ToString();
                 LoadEmployeeTasks();
                 LoadAllTasksForAdmin();
             };
@@ -57,7 +99,7 @@ namespace ZooBazarDesktopApp
         private void LoadEmployeeTasks()
         {
             flowLayoutPanelTasks.Controls.Clear();
-            List<Task> tasks = taskManager.GetTasksByEmployeeId(loggedEmployee.Id, selectedCategory);
+            List<Task> tasks = taskManager.GetTasksByEmployeeId(loggedEmployee.Id, selectedCategory == "All" ? null : selectedCategory);
 
             foreach (Task task in tasks)
             {
@@ -82,12 +124,21 @@ namespace ZooBazarDesktopApp
 
                 flowLayoutPanelTasks.Controls.Add(taskButton);
             }
+
         }
 
-        private void LoadAllTasksForAdmin()
+        private void LoadAllTasksForAdmin(bool? isDoneFilter = null)
         {
             flowLayoutPanelAdminTasks.Controls.Clear();
-            List<Task> tasks = taskManager.GetAllTasks();
+            List<Task> allTasks = taskManager.GetAllTasks(); 
+
+            string filterCategory = selectedCategory == "All" ? null : selectedCategory;
+            List<Task> tasks = filterCategory != null ? allTasks.Where(t => t.Category == filterCategory).ToList() : allTasks;
+
+            if (isDoneFilter.HasValue)
+            {
+                tasks = tasks.Where(t => t.IsDone == isDoneFilter.Value).ToList();
+            }
 
             foreach (Task task in tasks)
             {
@@ -181,7 +232,10 @@ namespace ZooBazarDesktopApp
                 {
                     Report selectedReport = reports[selectedIndex];
 
-                    ShowReportDetailsForm(selectedReport);
+                    using (ReportDetailsForm detailsForm = new ReportDetailsForm(selectedReport))
+                    {
+                        detailsForm.ShowDialog();
+                    }
                 }
                 else
                 {

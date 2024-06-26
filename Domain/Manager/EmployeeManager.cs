@@ -214,7 +214,7 @@ namespace Domain.Manager
             LoadContracts();
             LoadEmployees();
         }
-        public List<string> SearchEmployee(string name, string jobPosition, string location)
+        public List<string> SearchEmployee(string name, string jobPosition)
         {
             List<string> searchedEmployees = new List<string>();
 
@@ -222,7 +222,6 @@ namespace Domain.Manager
             {
                 bool nameMatch = true;
                 bool jobPositionMatch = true;
-                bool locationMatch = true;
 
                 if (!string.IsNullOrEmpty(name) && !employee.FirstName.Contains(name))
                 {
@@ -235,19 +234,6 @@ namespace Domain.Manager
                     {
                         jobPositionMatch = false;
                     }
-                }
-
-                if (!string.IsNullOrEmpty(location))
-                {
-                    if (employee.Location == null || !employee.Location.Name.Contains(location))
-                    {
-                        locationMatch = false;
-                    }
-                }
-
-                if (nameMatch && jobPositionMatch && locationMatch)
-                {
-                    searchedEmployees.Add(employee.Info);
                 }
             }
 

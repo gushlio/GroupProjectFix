@@ -49,10 +49,10 @@
             panelForm = new Panel();
             label7 = new Label();
             panel2 = new Panel();
+            label8 = new Label();
             button2 = new Button();
             pictureBox5 = new PictureBox();
             panel3 = new Panel();
-            label8 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -93,7 +93,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label6.ForeColor = SystemColors.ControlLightLight;
-            label6.Location = new Point(29, 569);
+            label6.Location = new Point(35, 277);
             label6.Name = "label6";
             label6.Size = new Size(80, 21);
             label6.TabIndex = 13;
@@ -104,7 +104,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label5.ForeColor = SystemColors.ControlLightLight;
-            label5.Location = new Point(31, 473);
+            label5.Location = new Point(44, 568);
             label5.Name = "label5";
             label5.Size = new Size(53, 21);
             label5.TabIndex = 11;
@@ -114,7 +114,7 @@
             // 
             pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
             pictureBox4.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox4.Location = new Point(27, 497);
+            pictureBox4.Location = new Point(33, 205);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(76, 71);
             pictureBox4.TabIndex = 12;
@@ -125,7 +125,7 @@
             // 
             pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
             pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(27, 409);
+            pictureBox3.Location = new Point(31, 504);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(76, 71);
             pictureBox3.TabIndex = 10;
@@ -170,7 +170,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(0, 282);
+            label1.Location = new Point(-2, 470);
             label1.Name = "label1";
             label1.Size = new Size(158, 21);
             label1.TabIndex = 6;
@@ -181,7 +181,7 @@
             lblAnimal.AutoSize = true;
             lblAnimal.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblAnimal.ForeColor = SystemColors.ControlLightLight;
-            lblAnimal.Location = new Point(5, 181);
+            lblAnimal.Location = new Point(7, 181);
             lblAnimal.Name = "lblAnimal";
             lblAnimal.Size = new Size(137, 21);
             lblAnimal.TabIndex = 5;
@@ -224,7 +224,7 @@
             // 
             pictureBoxAnimals.BackgroundImage = (Image)resources.GetObject("pictureBoxAnimals.BackgroundImage");
             pictureBoxAnimals.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBoxAnimals.Location = new Point(31, 109);
+            pictureBoxAnimals.Location = new Point(33, 109);
             pictureBoxAnimals.Name = "pictureBoxAnimals";
             pictureBoxAnimals.Size = new Size(78, 69);
             pictureBoxAnimals.TabIndex = 1;
@@ -235,7 +235,7 @@
             // 
             pictureBoxEmployees.BackgroundImage = Properties.Resources.icons8_employees_50;
             pictureBoxEmployees.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBoxEmployees.Location = new Point(29, 221);
+            pictureBoxEmployees.Location = new Point(27, 409);
             pictureBoxEmployees.Name = "pictureBoxEmployees";
             pictureBoxEmployees.Size = new Size(76, 68);
             pictureBoxEmployees.TabIndex = 0;
@@ -295,6 +295,18 @@
             panel2.Size = new Size(1918, 93);
             panel2.TabIndex = 15;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 35F, FontStyle.Bold | FontStyle.Italic);
+            label8.ForeColor = SystemColors.ButtonHighlight;
+            label8.Location = new Point(126, 19);
+            label8.Name = "label8";
+            label8.Size = new Size(270, 62);
+            label8.TabIndex = 17;
+            label8.Text = "Zoo Bazaar";
+            label8.Click += label8_Click;
+            // 
             // button2
             // 
             button2.BackColor = Color.DarkSeaGreen;
@@ -325,18 +337,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1754, 954);
             panel3.TabIndex = 16;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 35F, FontStyle.Bold | FontStyle.Italic);
-            label8.ForeColor = SystemColors.ButtonHighlight;
-            label8.Location = new Point(126, 19);
-            label8.Name = "label8";
-            label8.Size = new Size(270, 62);
-            label8.TabIndex = 17;
-            label8.Text = "Zoo Bazaar";
-            label8.Click += label8_Click;
             // 
             // ZooKeeperForm
             // 

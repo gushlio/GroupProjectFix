@@ -21,6 +21,8 @@ namespace ZooBazarDesktopApp
             InitializeComponent();
             loggedEmployee = currentUser;
 
+            ShowForm(new HomeForm(loggedEmployee));
+
         }
 
         private void ShowForm(Form form)
@@ -38,66 +40,115 @@ namespace ZooBazarDesktopApp
 
         private void pictureBoxAnimals_Click(object sender, EventArgs e)
         {
-            if (loggedEmployee.Contract.JobTitle == "Manager" || loggedEmployee.Contract.JobTitle == "Caretaker" || loggedEmployee.Contract.JobTitle == "ZooKeeper")
+            if (loggedEmployee.Contract != null)
             {
-                ShowForm(new AnimalForm(loggedEmployee));
+                if (loggedEmployee.Contract.JobTitle == "Manager" || loggedEmployee.Contract.JobTitle == "Caretaker" || loggedEmployee.Contract.JobTitle == "ZooKeeper")
+                {
+                    ShowForm(new AnimalForm(loggedEmployee));
+                }
+                else
+                {
+                    MessageBox.Show("Access Denied: This form is restricted to caretakers and zookeepers only.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("This form can only be accessed my Managers and Caretakers");
+                MessageBox.Show("You currently have not signed a contract. An Admin has to grant you access after you have signed your contract.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void pictureBoxEmployees_Click(object sender, EventArgs e)
         {
-            if (loggedEmployee.Contract.JobTitle == "Manager")
+            if (loggedEmployee.Contract != null)
             {
-                ShowForm(new EmployeeForm(loggedEmployee));
+                if (loggedEmployee.Contract.JobTitle == "Manager")
+                {
+                    ShowForm(new EmployeeForm(loggedEmployee));
+                }
+                else
+                {
+                    MessageBox.Show("Access Denied: This form is restricted to managers only.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("This form can only be accessed my Managers");
+                MessageBox.Show("You currently have not signed a contract. An Admin has to grant you access after you have signed your contract.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            ShowForm(new FeedingTimeTable());
+            if (loggedEmployee.Contract != null)
+            {
+                if (loggedEmployee.Contract.JobTitle == "Zookeeper" || loggedEmployee.Contract.JobTitle == "Caretaker" || loggedEmployee.Contract.JobTitle == "Manager")
+                {
+                    ShowForm(new FeedingTimeTable());
+                }
+                else
+                {
+                    MessageBox.Show("Access Denied: This form is restricted to caretakers and zookeepeers only.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("You currently have not signed a contract. An Admin has to grant you access after you have signed your contract.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void pictureBoxStatistics_Click(object sender, EventArgs e)
         {
-            if (loggedEmployee.Contract.JobTitle == "Manager")
+            if (loggedEmployee.Contract != null)
             {
-                ShowForm(new StatisticsForm());
+                if (loggedEmployee.Contract.JobTitle == "Manager")
+                {
+                    ShowForm(new StatisticsForm());
+                }
+                else
+                {
+                    MessageBox.Show("Access Denied: This form is restricted to managers only.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("This form can only be accessed my Managers");
+                MessageBox.Show("You currently have not signed a contract. An Admin has to grant you access after you have signed your contract.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            if (loggedEmployee.Contract.JobTitle == "TicketBooth" || loggedEmployee.Contract.JobTitle == "Manager")
+            if (loggedEmployee.Contract != null)
             {
-                ShowForm(new TicketBooth());
+                if (loggedEmployee.Contract.JobTitle == "TicketBooth" || loggedEmployee.Contract.JobTitle == "Manager")
+                {
+                    ShowForm(new TicketBooth());
+                }
+                else
+                {
+                    MessageBox.Show("Access Denied: This form is restricted to employees working at the ticket booth.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("This form can only be accessed by Employees working at the Ticket Booth.");
+                MessageBox.Show("You currently have not signed a contract. An Admin has to grant you access after you have signed your contract.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            if (loggedEmployee.Contract.JobTitle == "Manager")
+            if (loggedEmployee.Contract != null)
             {
-                ShowForm(new ScheduleForm());
+                if (loggedEmployee.Contract.JobTitle == "Manager")
+                {
+                    ShowForm(new ScheduleForm());
+                }
+                else
+                {
+                    MessageBox.Show("Access Denied: This form is restricted to managers only.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("This form can only be accessed my Managers");
+                MessageBox.Show("You currently have not signed a contract. An Admin has to grant you access after you have signed your contract.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -115,13 +166,20 @@ namespace ZooBazarDesktopApp
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            if (loggedEmployee.Contract.JobTitle != "Cleaner" || loggedEmployee.Contract.JobTitle != "TicketBooth" || loggedEmployee.Contract.JobTitle != "Security Guard")
+            if (loggedEmployee.Contract != null)
             {
-                ShowForm(new VetForm());
+                if (loggedEmployee.Contract.JobTitle == "Caretaker" || loggedEmployee.Contract.JobTitle == "Zookeeper" || loggedEmployee.Contract.JobTitle == "Manager")
+                {
+                    ShowForm(new VetForm());
+                }
+                else
+                {
+                    MessageBox.Show("Access Denied: This form is restricted to caretakers and zookeepeers only.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("You do not have the permission to access this form");
+                MessageBox.Show("You currently have not signed a contract. An Admin has to grant you access after you have signed your contract.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

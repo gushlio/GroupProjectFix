@@ -32,10 +32,8 @@
             comboBoxJobTItle = new ComboBox();
             label4 = new Label();
             btnSearch = new Button();
-            label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            cmbLocation = new ComboBox();
             txtName = new TextBox();
             panel2 = new Panel();
             btnView = new Button();
@@ -52,10 +50,8 @@
             panel1.Controls.Add(comboBoxJobTItle);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(btnSearch);
-            panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(cmbLocation);
             panel1.Controls.Add(txtName);
             panel1.Location = new Point(43, 65);
             panel1.Name = "panel1";
@@ -87,24 +83,13 @@
             btnSearch.BackColor = Color.FloralWhite;
             btnSearch.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSearch.ForeColor = SystemColors.ActiveCaptionText;
-            btnSearch.Location = new Point(1009, 24);
+            btnSearch.Location = new Point(1018, 31);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(171, 57);
+            btnSearch.Size = new Size(162, 46);
             btnSearch.TabIndex = 6;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(691, 52);
-            label3.Name = "label3";
-            label3.Size = new Size(94, 25);
-            label3.TabIndex = 5;
-            label3.Text = "Location:";
             // 
             // label2
             // 
@@ -127,15 +112,6 @@
             label1.Size = new Size(110, 50);
             label1.TabIndex = 3;
             label1.Text = "Empoloyee\r\n        Name:";
-            // 
-            // cmbLocation
-            // 
-            cmbLocation.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            cmbLocation.FormattingEnabled = true;
-            cmbLocation.Location = new Point(791, 52);
-            cmbLocation.Name = "cmbLocation";
-            cmbLocation.Size = new Size(190, 29);
-            cmbLocation.TabIndex = 2;
             // 
             // txtName
             // 
@@ -227,9 +203,7 @@
         private TextBox txtName;
         private Label label2;
         private Label label1;
-        private ComboBox cmbLocation;
         private Button btnSearch;
-        private Label label3;
         private Label label4;
         private Panel panel2;
         private Button btnView;

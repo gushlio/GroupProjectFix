@@ -36,26 +36,51 @@ namespace ZooBazarDesktopApp
 
         public void PopulateJobComboBox()
         {
+            List<string> jobTitles = new List<string>();
+            jobTitles.Add("All Job Titles");
+            jobTitles.AddRange(Enum.GetNames(typeof(JobTitles)));
+            jobTitles.Add("Not Working");
 
-            JobTitles[] jobTitles = (JobTitles[])Enum.GetValues(typeof(JobTitles));
             comboBoxJobTItle.DataSource = jobTitles;
-            comboBoxJobTItle.DisplayMember = "ToString";
-        }
-
-        private void RefreshEmployeeListBox(List<Employee> filteredEmployees)
-        {
-            lbEmployees.Items.Clear();
-
-            foreach (Employee employee in filteredEmployees)
-            {
-                lbEmployees.Items.Add(employee.Info);
-            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            lbEmployees.DataSource = null;
-            lbEmployees.DataSource = employeeManager.SearchEmployee(txtName.Text, comboBoxJobTItle.Text, cmbLocation.Text);
+            List<string> filteredEmployees = SearchEmployees(txtName.Text, comboBoxJobTItle.SelectedItem.ToString());
+            lbEmployees.DataSource = null; 
+            lbEmployees.DataSource = filteredEmployees; 
+        }
+
+        private List<string> SearchEmployees(string name, string jobPosition)
+        {
+            List<string> searchedEmployees = new List<string>();
+
+            foreach (string employeeInfo in employeeInfos)
+            {
+                string[] infoParts = employeeInfo.Split(new string[] { " - " }, StringSplitOptions.None);
+
+                string idPart = infoParts[0].Trim(); 
+                string namePart = infoParts[1].Trim(); 
+                string emailPart = infoParts[2].Trim(); 
+                string contractPart = infoParts[3].Trim(); 
+
+                string[] nameParts = namePart.Split(' ');
+                string firstName = nameParts[1]; 
+                string lastName = nameParts[2]; 
+
+                bool hasContract = !contractPart.Contains("No contract");
+
+                bool nameMatch = string.IsNullOrEmpty(name) || firstName.ToLower().Contains(name.ToLower());
+                bool jobPositionMatch = jobPosition == "All Job Titles" || (hasContract && contractPart.Contains(jobPosition));
+                bool notWorkingMatch = jobPosition == "Not Working" && !hasContract;
+
+                if (nameMatch && (jobPositionMatch || notWorkingMatch))
+                {
+                    searchedEmployees.Add(employeeInfo);
+                }
+            }
+
+            return searchedEmployees;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -63,6 +88,9 @@ namespace ZooBazarDesktopApp
             SignUp form = new SignUp(true);
             form.ShowDialog();
 
+            lbEmployees.DataSource = employeeInfos;
+
+            employeeInfos = employeeManager.GetEmployeesInfo();
             lbEmployees.DataSource = employeeInfos;
         }
 

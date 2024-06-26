@@ -22,15 +22,19 @@ namespace ZooBazarDesktopApp
         public TaskDetailsForm(Domain.Entity.Task task, Employee currentUser)
         {
             InitializeComponent();
+            loggedEmployee = currentUser;
             this.task = task;
             taskManager = new TaskManager();
+            buttonSave.Visible = false;
+            buttonDelete.Visible = false;
+
+            lblDescription.AutoSize = false; // Disable auto size to allow wrapping
+            lblDescription.MaximumSize = new Size(300, 0);
+            lblDescription.AutoSize = true;
 
             DisplayTaskDetails();
             DisplayAssignedEmployees();
             ConfigureForManagerOrAdmin();
-            loggedEmployee = currentUser;
-            buttonSave.Visible = false;
-            buttonDelete.Visible = false;
 
             List<string> categoryList = new List<string> { "Animal Care", "Administration", "Maintenance", "Other" };
             cmbCategory.DataSource = categoryList;
@@ -49,7 +53,7 @@ namespace ZooBazarDesktopApp
 
         private void ConfigureForManagerOrAdmin()
         {
-            if(loggedEmployee.Contract.JobTitle == "Manageer" || loggedEmployee.Contract.JobTitle != "Administrator")
+            if(loggedEmployee.Contract.JobTitle == "Manager" || loggedEmployee.Contract.JobTitle == "Administrator")
             {
                 buttonSave.Visible = true;
                 buttonDelete.Visible = true;
@@ -129,7 +133,6 @@ namespace ZooBazarDesktopApp
             }
             else
             {
-                // Update task details
                 string title = txtTitle.Text;
                 string description = txtDescription.Text;
                 string category = cmbCategory.SelectedItem?.ToString();
@@ -141,8 +144,12 @@ namespace ZooBazarDesktopApp
                     return;
                 }
 
-                // Assuming you have a taskId variable that holds the ID of the task being updated
-                // Replace taskId with your actual task ID variable
+                lblTitle.Text = title;
+                lblDescription.Text = description;
+                lblCategory.Text = category;
+                lblLocation.Text = location;
+                lblDeadline.Text = doneByTextBox.Text;
+
                 taskManager.UpdateTask(task.Id, title, description, category, location, deadline);
 
                 MessageBox.Show("Task details updated.", "Update Task", MessageBoxButtons.OK, MessageBoxIcon.Information);

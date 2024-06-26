@@ -39,6 +39,7 @@
             categoryComboBox = new ComboBox();
             btnAssignTask = new Button();
             flowLayoutPanelTasks = new FlowLayoutPanel();
+            adminComboBox = new ComboBox();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -122,6 +123,7 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.DarkSeaGreen;
+            groupBox2.Controls.Add(adminComboBox);
             groupBox2.Controls.Add(categoryComboBox);
             groupBox2.Controls.Add(flowLayoutPanelAdminTasks);
             groupBox2.Controls.Add(btnAssignTask);
@@ -162,6 +164,14 @@
             flowLayoutPanelTasks.TabIndex = 0;
             flowLayoutPanelTasks.Paint += flowLayoutPanel1_Paint;
             // 
+            // adminComboBox
+            // 
+            adminComboBox.FormattingEnabled = true;
+            adminComboBox.Location = new Point(471, 84);
+            adminComboBox.Name = "adminComboBox";
+            adminComboBox.Size = new Size(159, 40);
+            adminComboBox.TabIndex = 3;
+            // 
             // HomeForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -193,5 +203,6 @@
         private Button btnAssignTask;
         private FlowLayoutPanel flowLayoutPanelAdminTasks;
         private ComboBox categoryComboBox;
+        private ComboBox adminComboBox;
     }
 }
