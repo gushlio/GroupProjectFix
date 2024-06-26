@@ -34,13 +34,12 @@
             btnFatherDetails = new Button();
             tbFatherIdModify = new TextBox();
             lblFatherId = new Label();
+            btnViewNotes = new Button();
             btnMotherDetails = new Button();
             tbMotherIdModify = new TextBox();
             lblMotherId = new Label();
             label7 = new Label();
             label6 = new Label();
-            btnModify = new Button();
-            btnViewNotes = new Button();
             btnLocationDetails = new Button();
             cbReasonForLeave = new ComboBox();
             cbReasonForEntry = new ComboBox();
@@ -55,6 +54,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            btnModify = new Button();
             ((System.ComponentModel.ISupportInitialize)pbAnimal).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -144,6 +144,19 @@
             lblFatherId.TabIndex = 39;
             lblFatherId.Text = "(no father specified)";
             // 
+            // btnViewNotes
+            // 
+            btnViewNotes.BackColor = Color.DarkSeaGreen;
+            btnViewNotes.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnViewNotes.ForeColor = SystemColors.ButtonHighlight;
+            btnViewNotes.Location = new Point(20, 396);
+            btnViewNotes.Name = "btnViewNotes";
+            btnViewNotes.Size = new Size(453, 99);
+            btnViewNotes.TabIndex = 30;
+            btnViewNotes.Text = "View Medical  Record on Animal";
+            btnViewNotes.UseVisualStyleBackColor = false;
+            btnViewNotes.Click += btnViewNotes_Click;
+            // 
             // btnMotherDetails
             // 
             btnMotherDetails.BackColor = Color.Transparent;
@@ -197,32 +210,6 @@
             label6.Size = new Size(120, 30);
             label6.TabIndex = 32;
             label6.Text = "Mother ID:";
-            // 
-            // btnModify
-            // 
-            btnModify.BackColor = Color.Transparent;
-            btnModify.Font = new Font("Microsoft Sans Serif", 14F);
-            btnModify.Location = new Point(281, 464);
-            btnModify.Margin = new Padding(1);
-            btnModify.Name = "btnModify";
-            btnModify.Size = new Size(242, 61);
-            btnModify.TabIndex = 31;
-            btnModify.Text = "Modify Animal Data";
-            btnModify.UseVisualStyleBackColor = false;
-            btnModify.Click += btnModify_Click;
-            // 
-            // btnViewNotes
-            // 
-            btnViewNotes.BackColor = Color.DarkSeaGreen;
-            btnViewNotes.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnViewNotes.ForeColor = SystemColors.ButtonHighlight;
-            btnViewNotes.Location = new Point(20, 396);
-            btnViewNotes.Name = "btnViewNotes";
-            btnViewNotes.Size = new Size(453, 99);
-            btnViewNotes.TabIndex = 30;
-            btnViewNotes.Text = "View Medical  Reports on Animal";
-            btnViewNotes.UseVisualStyleBackColor = false;
-            btnViewNotes.Click += btnViewNotes_Click;
             // 
             // btnLocationDetails
             // 
@@ -361,6 +348,19 @@
             label1.Size = new Size(40, 30);
             label1.TabIndex = 0;
             label1.Text = "ID:";
+            // 
+            // btnModify
+            // 
+            btnModify.BackColor = Color.Transparent;
+            btnModify.Font = new Font("Microsoft Sans Serif", 14F);
+            btnModify.Location = new Point(281, 464);
+            btnModify.Margin = new Padding(1);
+            btnModify.Name = "btnModify";
+            btnModify.Size = new Size(242, 61);
+            btnModify.TabIndex = 31;
+            btnModify.Text = "Modify Animal Data";
+            btnModify.UseVisualStyleBackColor = false;
+            btnModify.Click += btnModify_Click;
             // 
             // AnimalDetailsForm
             // 

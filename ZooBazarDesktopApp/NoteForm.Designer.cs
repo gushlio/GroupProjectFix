@@ -37,6 +37,8 @@
             lblContent = new Label();
             btnDelete = new Button();
             lblDate = new Label();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -63,7 +65,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label3.Location = new Point(12, 126);
+            label3.Location = new Point(17, 68);
             label3.Name = "label3";
             label3.Size = new Size(51, 21);
             label3.TabIndex = 2;
@@ -103,7 +105,7 @@
             // 
             lblContent.AutoSize = true;
             lblContent.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            lblContent.Location = new Point(80, 126);
+            lblContent.Location = new Point(75, 68);
             lblContent.Name = "lblContent";
             lblContent.Size = new Size(87, 21);
             lblContent.TabIndex = 6;
@@ -129,24 +131,35 @@
             lblDate.TabIndex = 10;
             lblDate.Text = "lblTitle";
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.AntiqueWhite;
+            panel1.Controls.Add(lblContent);
+            panel1.Controls.Add(label3);
+            panel1.Location = new Point(43, 185);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(665, 334);
+            panel1.TabIndex = 11;
+            // 
             // NoteForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightGoldenrodYellow;
-            ClientSize = new Size(652, 408);
+            BackColor = Color.FloralWhite;
+            ClientSize = new Size(750, 531);
+            Controls.Add(panel1);
             Controls.Add(lblDate);
             Controls.Add(btnDelete);
-            Controls.Add(lblContent);
             Controls.Add(lblTitle);
             Controls.Add(lblAuthor);
             Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "NoteForm";
             Text = "NoteForm";
             Load += NoteForm_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -162,5 +175,6 @@
         private Label lblContent;
         private Button btnDelete;
         private Label lblDate;
+        private Panel panel1;
     }
 }

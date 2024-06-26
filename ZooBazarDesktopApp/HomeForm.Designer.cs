@@ -87,7 +87,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 26F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ButtonFace;
-            label1.Location = new Point(420, 37);
+            label1.Location = new Point(781, 38);
             label1.Name = "label1";
             label1.Size = new Size(216, 47);
             label1.TabIndex = 0;
@@ -125,8 +125,9 @@
             // 
             flowLayoutPanel1.Location = new Point(22, 38);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(448, 482);
+            flowLayoutPanel1.Size = new Size(443, 482);
             flowLayoutPanel1.TabIndex = 0;
+            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
             // HomeForm
             // 

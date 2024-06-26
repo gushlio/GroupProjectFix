@@ -25,7 +25,7 @@ namespace ZooBazarDesktopApp
             animal.LoadNotes();
             foreach (Note note in animal.notes)
             {
-                noteTitles.Add(note.Title);
+                noteTitles.Add($"{note.Title} - {note.DateCreated}");
             }
             InitializeComponent();
             this.loggedEmployee = loggedUser;
@@ -40,18 +40,22 @@ namespace ZooBazarDesktopApp
             string content = txtBxContent.Text;
             animal.AddNote(loggedEmployee.Id, title, content);
             animal.LoadNotes();
+            noteTitles.Clear(); // Clear the list before re-adding notes
             foreach (Note note in animal.notes)
             {
-                noteTitles.Add(note.Title);
+                noteTitles.Add($"{note.Title} - {note.DateCreated}");
             }
             lstBxNotes.DataSource = null;
             lstBxNotes.DataSource = noteTitles;
-
         }
 
         private void btnNoteDetails_Click(object sender, EventArgs e)
         {
-            Note selectedNote = animal.GetNoteByTitle(lstBxNotes.SelectedItem.ToString());
+            string selectedItem = lstBxNotes.SelectedItem.ToString();
+
+            string selectedTitle = selectedItem.Substring(0, selectedItem.LastIndexOf(" - "));
+
+            Note selectedNote = animal.GetNoteByTitle(selectedTitle);
 
             if (selectedNote != null)
             {

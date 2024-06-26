@@ -39,7 +39,6 @@ namespace ZooBazarDesktopApp
                 EnableButton(btnSender);
             }
 
-            // Clear the controls before loading new ones
             flpMorning.Controls.Clear();
             flpAfternoon.Controls.Clear();
             flpNight.Controls.Clear();
@@ -48,19 +47,16 @@ namespace ZooBazarDesktopApp
                 .Where(shift => shift["DayOfWeek"].ToString().Equals(currentDay, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
-            // Load morning shifts
             List<Dictionary<string, object>> morningShifts = filteredShifts
                 .Where(shift => shift["ShiftTime"].ToString() == "8AM - 12PM")
                 .ToList();
             AddShiftsToPanel(morningShifts, flpMorning);
 
-            // Load afternoon shifts
             List<Dictionary<string, object>> afternoonShifts = filteredShifts
                 .Where(shift => shift["ShiftTime"].ToString() == "1PM - 5PM")
                 .ToList();
             AddShiftsToPanel(afternoonShifts, flpAfternoon);
 
-            // Load evening shifts
             List<Dictionary<string, object>> eveningShifts = filteredShifts
                 .Where(shift => shift["ShiftTime"].ToString() == "6PM - 10PM")
                 .ToList();

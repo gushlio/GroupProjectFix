@@ -39,6 +39,11 @@ namespace ZooBazarDesktopApp
             lblAuthor.Text = author.FirstName + " " + author.LastName + " (" + author.Username + ")";
             lblDate.Text = newNote.DateCreated;
             lblTitle.Text = newNote.Title;
+
+      
+            lblContent.AutoSize = false; 
+            lblContent.MaximumSize = new Size(600, 0); 
+            lblContent.AutoSize = true; 
             lblContent.Text = newNote.Content;
         }
 

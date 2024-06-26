@@ -108,9 +108,9 @@
             label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(17, 0);
             label1.Name = "label1";
-            label1.Size = new Size(110, 25);
+            label1.Size = new Size(142, 25);
             label1.TabIndex = 0;
-            label1.Text = "Add Report";
+            label1.Text = "Add New Entry";
             // 
             // lstBxNotes
             // 
