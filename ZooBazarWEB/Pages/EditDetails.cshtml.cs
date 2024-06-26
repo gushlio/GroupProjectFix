@@ -33,49 +33,8 @@ namespace ZooBazaarWebApp.Pages
         
             employeeManager.UpdateEmployee(employee.Id, employee.FirstName, employee.LastName, employee.EmailAddress, employee.DateOfBirth, employee.ContactInfo, employee.Bsn, employee.Address);
             return RedirectToPage("/Details");
-            if (ModelState.IsValid)
-            {
-                
-            }
-            else
-            {
-                ErrorMessages = ModelState.Values
-               .SelectMany(v => v.Errors)
-               .Select(e => e.ErrorMessage)
-               .ToList();
-
-            }
-            return null;
             
         }
-        //public async Task<IActionResult> OnPostAsync()
-        //{
-        //    //if (!ModelState.IsValid)
-        //    //{
-        //    //    return Page();
-        //    //}
-
-        //    //_context.Attach(User).State = EntityState.Modified;
-
-        //    //try
-        //    //{
-        //    //    await _context.SaveChangesAsync();
-        //    //}
-        //    //catch (DbUpdateConcurrencyException)
-        //    //{
-        //    //    if (!_context.Users.Any(e => e.Id == User.Id))
-        //    //    {
-        //    //        return NotFound();
-        //    //    }
-        //    //    else
-        //    //    {
-        //    //        throw;
-        //    //    }
-        //    //}
-
-        //    return RedirectToPage("./Details", new { id = User.Id });
-        //}
-
     }
 }
 
