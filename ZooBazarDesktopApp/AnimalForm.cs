@@ -71,7 +71,7 @@ namespace ZooBazarDesktopApp
                 button.TextImageRelation = TextImageRelation.ImageAboveText;
                 button.Click += (sender, e) =>
                 {
-                    AnimalDetailsForm animalDetailsForm = new AnimalDetailsForm(this, animal, loggedEmployee);
+                    AnimalDetails animalDetailsForm = new AnimalDetails(this, animal, loggedEmployee);
                     animalDetailsForm.ShowDialog();
                 };
 
@@ -116,7 +116,7 @@ namespace ZooBazarDesktopApp
                 button.TextImageRelation = TextImageRelation.ImageAboveText;
                 button.Click += (sender, e) =>
                 {
-                    AnimalDetailsForm animalDetailsForm = new AnimalDetailsForm(this, animal, loggedEmployee);
+                    AnimalDetails animalDetailsForm = new AnimalDetails(this, animal, loggedEmployee);
                     animalDetailsForm.ShowDialog();
                 };
 
@@ -161,7 +161,7 @@ namespace ZooBazarDesktopApp
                 button.TextImageRelation = TextImageRelation.ImageAboveText;
                 button.Click += (sender, e) =>
                 {
-                    AnimalDetailsForm animalDetailsForm = new AnimalDetailsForm(this, animal, loggedEmployee);
+                    AnimalDetails animalDetailsForm = new AnimalDetails(this, animal, loggedEmployee);
                     animalDetailsForm.ShowDialog();
                 };
 

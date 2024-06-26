@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ZooBazarDesktopApp
 {
-    public partial class AnimalDetailsForm : Form
+    public partial class AnimalDetails : Form
     {
         Animal animal;
         AnimalManager animalManager;
@@ -23,9 +23,8 @@ namespace ZooBazarDesktopApp
         string imgURL;
         AnimalForm animalForm;
         string orig;
-
         Employee loggedEmployee;
-        public AnimalDetailsForm(AnimalForm af, Animal a, Employee loggedUser)
+        public AnimalDetails(AnimalForm af, Animal a, Employee loggedUser)
         {
             animalForm = af;
             animal = a;
@@ -94,6 +93,8 @@ namespace ZooBazarDesktopApp
             cbSpecies.Text = animal.species.ToString();
             cbReasonForEntry.Text = animal.reasonForEntry.ToString();
             cbReasonForLeave.Text = animal.reasonForLeave.ToString();
+            tbMotherIdModify.Text = animal.motherId.ToString();
+            tbFatherIdModify.Text = animal.fatherId.ToString();
 
             lblSpecies.Visible = true;
             lblReasonForEntry.Visible = true;
@@ -108,10 +109,67 @@ namespace ZooBazarDesktopApp
             tbFatherIdModify.Visible = false;
 
 
-            button1.Visible = false;
+            btnChangePicture.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnViewNotes_Click(object sender, EventArgs e)
+        {
+            AnimalNoteForm noteForm = new AnimalNoteForm(loggedEmployee, animal);
+            noteForm.ShowDialog();
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (cbSpecies.Visible == false)
+            {
+                lblSpecies.Visible = false;
+                lblReasonForEntry.Visible = false;
+                lblReasonForLeave.Visible = false;
+                lblMotherId.Visible = false;
+                lblFatherId.Visible = false;
+
+                cbSpecies.Visible = true;
+                cbReasonForEntry.Visible = true;
+                cbReasonForLeave.Visible = true;
+                tbMotherIdModify.Visible = true;
+                tbFatherIdModify.Visible = true;
+
+                btnChangePicture.Visible = true;
+            }
+            else
+            {
+                animalManager.UpdateAnimalReasonForLeave(animal.id, cbReasonForLeave.Text);
+                animalManager.UpdateAnimalReasonForEntry(animal.id, cbReasonForEntry.Text);
+                animalManager.UpdateAnimalSpecies(animal.id, cbSpecies.Text);
+                if (!string.IsNullOrEmpty(tbMotherIdModify.Text))
+                {
+                    animalManager.UpdateAnimalMotherId(animal.id, Convert.ToInt32(tbMotherIdModify.Text));
+                }
+
+                if (!string.IsNullOrEmpty(tbFatherIdModify.Text))
+                {
+                    animalManager.UpdateAnimalFatherId(animal.id, Convert.ToInt32(tbFatherIdModify.Text));
+                }
+
+                if (imgURL != "")
+                {
+                    animalManager.UpdateAnimalImgURL(animal.id, imgURL);
+                }
+
+                MessageBox.Show("Animal data changed successfully!");
+                if (orig == "")
+                {
+                    animalForm.AnimalCards(animalManager.GetAnimalsInZoo());
+                }
+                else
+                {
+                    animalForm.AnimalCardsGrey(animalManager.GetAnimalsInZoo());
+                }
+                RefreshPage();
+            }
+        }
+
+        private void btnChangePicture_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -148,66 +206,51 @@ namespace ZooBazarDesktopApp
             pbAnimal.Image = new Bitmap(imgURL);
         }
 
-        private void btnViewNotes_Click(object sender, EventArgs e)
-        {
-            AnimalNoteForm noteForm = new AnimalNoteForm(loggedEmployee, animal);
-            noteForm.ShowDialog();
-        }
-
         private void btnLocationDetails_Click(object sender, EventArgs e)
         {
             LocationDetailsForm frm = new LocationDetailsForm(animal.locationName);
             frm.ShowDialog();
         }
 
-        private void btnModify_Click(object sender, EventArgs e)
+        private void btnMotherDetails_Click(object sender, EventArgs e)
         {
-            if (cbSpecies.Visible == false)
+            try
             {
-                lblSpecies.Visible = false;
-                lblReasonForEntry.Visible = false;
-                lblReasonForLeave.Visible = false;
-                lblMotherId.Visible = false;
-                lblFatherId.Visible = false;
-
-                cbSpecies.Visible = true;
-                cbReasonForEntry.Visible = true;
-                cbReasonForLeave.Visible = true;
-                tbMotherIdModify.Visible = true;
-                tbFatherIdModify.Visible = true;
-
-                button1.Visible = true;
-            }
-            else
-            {
-                animalManager.UpdateAnimalReasonForLeave(animal.id, cbReasonForLeave.Text);
-                animalManager.UpdateAnimalReasonForEntry(animal.id, cbReasonForEntry.Text);
-                animalManager.UpdateAnimalSpecies(animal.id, cbSpecies.Text);
-                if (!string.IsNullOrEmpty(tbMotherIdModify.Text))
+                int motherId = Convert.ToInt32(lblMotherId.Text);
+                if (motherId != 0)
                 {
-                    animalManager.UpdateAnimalMotherId(animal.id, Convert.ToInt32(tbMotherIdModify.Text));
-                }
-               
-                if (!string.IsNullOrEmpty(tbFatherIdModify.Text))
-                {
-                    animalManager.UpdateAnimalFatherId(animal.id, Convert.ToInt32(tbFatherIdModify.Text));
-                }
-               
-                if (imgURL != "")
-                {
-                    animalManager.UpdateAnimalImgURL(animal.id, imgURL);
-                }
-
-                MessageBox.Show("Animal data changed successfully!");
-                if (orig == "")
-                {
-                    animalForm.AnimalCards(animalManager.GetAnimalsInZoo());
+                    AnimalDetails animalDetailsForm = new AnimalDetails(animalForm, animalManager.GetAnimalById(motherId), loggedEmployee);
+                    animalDetailsForm.ShowDialog();
                 }
                 else
                 {
-                    animalForm.AnimalCardsGrey(animalManager.GetAnimalsInZoo());
+                    MessageBox.Show("No mother selected");
                 }
-                RefreshPage();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void btnFatherDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int fatherId = Convert.ToInt32(lblFatherId.Text);
+                if (fatherId != 0)
+                {
+                    AnimalDetails animalDetailsForm = new AnimalDetails(animalForm, animalManager.GetAnimalById(fatherId), loggedEmployee);
+                    animalDetailsForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("No father selected");
+                }
+            }
+            catch
+            {
+
             }
         }
     }

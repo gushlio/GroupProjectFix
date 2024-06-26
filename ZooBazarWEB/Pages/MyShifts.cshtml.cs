@@ -7,7 +7,6 @@ namespace ZooBazaarWebApp.Pages
 {
     public class MyShiftsModel : PageModel
     {
-        // private fields
         private ShiftManager _shiftManager;
         private EmployeeManager _employeeManager;
 

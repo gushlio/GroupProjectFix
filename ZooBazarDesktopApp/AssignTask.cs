@@ -25,18 +25,49 @@ namespace ZooBazarDesktopApp
             taskManager = new TaskManager();
             _employeeManager.LoadEmployees();
 
-            foreach (var employee in _employeeManager.Employees)
-            {
-                string displayText = $"ID:{employee.Id}-{employee.FirstName} {employee.LastName} - {employee.Contract.JobTitle} ";
-                lbEmployees.Items.Add(displayText);
-            }
+            PopulateEmployeesListBox();
+            InitializeJobTitleComboBox();
 
-            List<string> categoryList = new List<string> { "Animal Care", "Administration", "Maintenance", "Maintenance" };
+            List<string> categoryList = new List<string> { "Animal Care", "Administration", "Maintenance", "Other" };
             categoryComboBox.DataSource = categoryList;
 
 
-            List<string> locationList = new List<string> { "Location1", "Location2", "Location3" };
+            List<string> locationList = new List<string> { "Savanna Zone", "Rainforest Zone", "Aquatic Zone", "Arctic Zone", "Desert Zone" };
             locationComboBox.DataSource = locationList;
+        }
+
+        private void PopulateEmployeesListBox(string jobTitleFilter = null)
+        {
+            lbEmployees.Items.Clear();
+            IEnumerable<Employee> filteredEmployees = _employeeManager.Employees.Where(emp => emp.Contract != null);
+
+            if (!string.IsNullOrEmpty(jobTitleFilter) && jobTitleFilter != "All")
+            {
+                filteredEmployees = filteredEmployees.Where(emp => emp.Contract.JobTitle == jobTitleFilter);
+            }
+
+            foreach (var employee in filteredEmployees)
+            {
+                string displayText = $"{employee.Id} - {employee.FirstName} {employee.LastName} - {employee.Contract.JobTitle}";
+                lbEmployees.Items.Add(displayText);
+            }
+        }
+
+        private void InitializeJobTitleComboBox()
+        {
+            List<string> jobTitles = _employeeManager.Employees
+            .Where(emp => emp.Contract != null)
+            .Select(emp => emp.Contract.JobTitle)
+            .Distinct()
+            .ToList();
+            jobTitles.Insert(0, "All"); // Add "All" option
+
+            jobTitleComboBox.DataSource = jobTitles;
+            jobTitleComboBox.SelectedIndexChanged += (sender, e) =>
+            {
+                string selectedJobTitle = jobTitleComboBox.SelectedItem.ToString();
+                PopulateEmployeesListBox(selectedJobTitle);
+            };
         }
 
         private void button1_Click(object sender, EventArgs e)

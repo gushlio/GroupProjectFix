@@ -69,15 +69,16 @@ namespace Domain.Manager
             return totalShifts;
         }
 
-        public List<Domain.Entity.Shift> GetShiftsByEmployee(int employeeID)
+        public List<Shift> GetShiftsByEmployee(int employeeID)
         {
             return shifts
                 .Where(shift => (int)shift["EmployeeID"] == employeeID)
-                .Select(shift => new Domain.Entity.Shift
+                .Select(shift => new Shift
                 {
                     Id = (int)shift["Id"],
-                    EmployeeId = (int)shift["EmployeeID"]
-                    // Map other properties here
+                    EmployeeId = (int)shift["EmployeeID"],
+                    DayOfWeek = shift["DayOfWeek"].ToString(),
+                    ShiftTime = shift["ShiftTime"].ToString()
                 })
                 .ToList();
         }

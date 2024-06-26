@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer;
 using Domain.Manager;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 namespace TopTierReviewWeb
@@ -25,6 +26,15 @@ namespace TopTierReviewWeb
 
             services.AddSession();
             services.AddHttpContextAccessor();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+           .AddCookie(options =>
+           {
+               options.LoginPath = "/Login";
+               options.LogoutPath = "/Logout";
+               options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+               options.SlidingExpiration = true;
+           });
 
         }
 

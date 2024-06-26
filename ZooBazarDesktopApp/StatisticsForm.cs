@@ -24,14 +24,14 @@ namespace ZooBazarDesktopApp
         public StatisticsForm()
         {
             InitializeComponent();
+            tm.LoadTickets();
+            plotTitleLBL.Text = string.Empty;
+            grpBxForMoreStatistics.Visible = false;
         }
 
         private void StatisticsForm_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
-            tm.LoadTickets();
-            plotTitleLBL.Text = string.Empty;
-            grpBxForMoreStatistics.Visible = false;
+            
         }
 
         private void DateTimeCustomTickGenerator(ScottPlot.Plot plot, string type)
@@ -346,7 +346,9 @@ namespace ZooBazarDesktopApp
 
         private void salesRB_CheckedChanged(object sender, EventArgs e)
         {
-
+            CreateTicketChart("monthlyTotal");
+            plotTitleLBL.Text = "Monthly total ticket sales";
+            grpBxForMoreStatistics.Visible = true;
         }
 
         private void dailyTotalRB_CheckedChanged(object sender, EventArgs e)

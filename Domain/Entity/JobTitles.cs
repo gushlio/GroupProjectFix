@@ -13,5 +13,7 @@ namespace Domain.Entity
         Caretaker,
         SecurityGuard,
         Manager,
+        Administrator,
+        Cleaner
     }
 }

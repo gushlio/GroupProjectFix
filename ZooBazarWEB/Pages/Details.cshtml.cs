@@ -21,12 +21,6 @@ namespace ZooBazaarWebApp.Pages
             employeeManager = new EmployeeManager();
             employeeManager.LoadEmployees();
             employee = employeeManager.GetEmployeeById(Convert.ToInt32(User.Identity.Name));
-            //User = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
-
-            //if (User == null)
-            //{
-            //    return NotFound();
-            //}
             return Page();
         }
     }

@@ -36,6 +36,8 @@ namespace Domain.Entity
             
         }
 
+        public Employee()
+        { }
         public DateTime GetContractStartDate()
         {
             if (DateTime.TryParse(Contract?.ContractStart, out DateTime ContractStart))

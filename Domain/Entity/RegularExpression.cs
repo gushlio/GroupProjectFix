@@ -22,7 +22,7 @@ namespace Domain.Entity
         {
             patternEmail = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-z]+$";
             patternPhone = @"^\+\d{1,}$";
-            patternBirthday = @"^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-((19[4-9]\d|200[0-8]))$";
+            patternBirthday = @"^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[4-9]\d|200[0-9]|201[0-9]|202[0-4])$";
             patternBsn = @"^\d{4}\.\d{2}\.\d{3}$";
             regexEmail = new Regex(patternEmail);
             regexPhone = new Regex(patternPhone);

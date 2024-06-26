@@ -31,9 +31,6 @@
     <Compile Update="UserControls\Dashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserControls\TaskUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="UserControls\UserControlBlank.cs">
       <SubType>UserControl</SubType>
     </Compile>

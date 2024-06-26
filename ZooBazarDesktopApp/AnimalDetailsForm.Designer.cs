@@ -61,10 +61,10 @@
             // 
             // pbAnimal
             // 
-            pbAnimal.BackgroundImageLayout = ImageLayout.Stretch;
             pbAnimal.Location = new Point(42, 50);
             pbAnimal.Name = "pbAnimal";
             pbAnimal.Size = new Size(637, 401);
+            pbAnimal.SizeMode = PictureBoxSizeMode.StretchImage;
             pbAnimal.TabIndex = 0;
             pbAnimal.TabStop = false;
             // 

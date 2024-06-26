@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer;
 using Domain.Entity;
+using Domain.Manager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Task = Domain.Entity.Task;
 
 namespace ZooBazarDesktopApp
 {
@@ -17,19 +19,113 @@ namespace ZooBazarDesktopApp
         Employee loggedEmployee;
         private List<Report> reports;
         private ReportsDataAccess reportsDataAccess;
+        private TaskManager taskManager;
+        private string selectedCategory;
         public HomeForm(Employee currentUser)
         {
             InitializeComponent();
             loggedEmployee = currentUser;
             reportsDataAccess = new ReportsDataAccess();
+            taskManager = new TaskManager();
 
+            InitializeCategoryComboBox();
             LoadReportsData();
+            LoadEmployeeTasks();
+            LoadAllTasksForAdmin();
             UpdateListBox();
+
+            if (loggedEmployee.Contract.JobTitle != "Manager" && loggedEmployee.Contract.JobTitle != "Admin")
+            {
+                flowLayoutPanelAdminTasks.Visible = false;
+                btnAssignTask.Visible = false;
+            }
+
+        }
+
+        private void InitializeCategoryComboBox()
+        {
+            List<string> categories = new List<string> { "All", "Animal Care", "Maintenance", "Administration", "Other" };
+            categoryComboBox.DataSource = categories;
+            categoryComboBox.SelectedIndexChanged += (sender, e) =>
+            {
+                LoadEmployeeTasks();
+                LoadAllTasksForAdmin();
+            };
+        }
+
+
+        private void LoadEmployeeTasks()
+        {
+            flowLayoutPanelTasks.Controls.Clear();
+            List<Task> tasks = taskManager.GetTasksByEmployeeId(loggedEmployee.Id, selectedCategory);
+
+            foreach (Task task in tasks)
+            {
+                Button taskButton = new Button();
+                taskButton.Text = task.Title;
+                taskButton.Tag = task;
+                taskButton.Click += TaskButton_Click;
+                taskButton.Size = new Size(440, 50);
+
+                if (task.IsDone)
+                {
+                    taskButton.BackColor = Color.Green;
+                }
+                else if (task.Deadline < DateTime.Now)
+                {
+                    taskButton.BackColor = Color.Red;
+                }
+                else
+                {
+                    taskButton.BackColor = Color.Yellow;
+                }
+
+                flowLayoutPanelTasks.Controls.Add(taskButton);
+            }
+        }
+
+        private void LoadAllTasksForAdmin()
+        {
+            flowLayoutPanelAdminTasks.Controls.Clear();
+            List<Task> tasks = taskManager.GetAllTasks();
+
+            foreach (Task task in tasks)
+            {
+                Button taskButton = new Button();
+                taskButton.Text = task.Title;
+                taskButton.Tag = task;
+                taskButton.Click += TaskButton_Click;
+                taskButton.Size = new Size(440, 50);
+
+                if (task.IsDone)
+                {
+                    taskButton.BackColor = Color.Green;
+                }
+                else if (task.Deadline < DateTime.Now)
+                {
+                    taskButton.BackColor = Color.Red;
+                }
+                else
+                {
+                    taskButton.BackColor = Color.Yellow;
+                }
+
+                flowLayoutPanelAdminTasks.Controls.Add(taskButton);
+            }
+        }
+
+        private void TaskButton_Click(object sender, EventArgs e)
+        {
+            Button taskButton = sender as Button;
+            Domain.Entity.Task task = taskButton.Tag as Domain.Entity.Task;
+
+            TaskDetailsForm taskDetailsForm = new TaskDetailsForm(task, loggedEmployee);
+            taskDetailsForm.ShowDialog();
         }
 
         private void LoadReportsData()
         {
-            reportsDataAccess.LoadReportsData(); 
+            reportsDataAccess.LoadReportsData();
 
             reports = new List<Report>();
             foreach (var reportData in reportsDataAccess.reportsData)
@@ -37,7 +133,7 @@ namespace ZooBazarDesktopApp
                 int id = Convert.ToInt32(reportData[0]);
                 int employeeId = Convert.ToInt32(reportData[1]);
                 string title = reportData[2];
-                string description = reportData[3]; 
+                string description = reportData[3];
                 string dateCreated = reportData[4];
                 string category = reportData[5];
 
@@ -51,9 +147,9 @@ namespace ZooBazarDesktopApp
             listBoxReports.Items.Clear();
             foreach (var reportData in reportsDataAccess.reportsData)
             {
-                string title = reportData[2]; 
-                string dateCreated = reportData[4]; 
-                string category = reportData[5]; 
+                string title = reportData[2];
+                string dateCreated = reportData[4];
+                string category = reportData[5];
                 listBoxReports.Items.Add($"{title} - {dateCreated} ({category})");
             }
         }
@@ -66,11 +162,11 @@ namespace ZooBazarDesktopApp
             if (result == DialogResult.OK)
             {
                 string title = addReportForm.CreatedReport.Title;
-                string description = addReportForm.CreatedReport.Content; 
+                string description = addReportForm.CreatedReport.Content;
                 string category = addReportForm.CreatedReport.Category;
 
                 reportsDataAccess.AddReportData(loggedEmployee.Id, title, description, category);
-                LoadReportsData(); 
+                LoadReportsData();
                 UpdateListBox();
             }
         }
@@ -103,7 +199,7 @@ namespace ZooBazarDesktopApp
             int id = report.Id;
             int employeeId = report.AuthorID;
             string title = report.Title;
-            string description = report.Content; 
+            string description = report.Content;
             string dateCreated = report.DateCreated;
             string category = report.Category;
 
@@ -116,6 +212,12 @@ namespace ZooBazarDesktopApp
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnAssignTask_Click(object sender, EventArgs e)
+        {
+            AssignTask assignTaskForm = new AssignTask();
+            assignTaskForm.ShowDialog();
         }
     }
 }

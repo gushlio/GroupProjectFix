@@ -57,7 +57,7 @@ namespace ZooBazarDesktopApp
                 button.TextImageRelation = TextImageRelation.ImageAboveText;
                 button.Click += (sender, e) =>
                 {
-                    addAnimalForm.GetMotherId(animal.id);
+                    addAnimalForm.GetFatherId(animal.id);
                     this.Close();
                 };
 

@@ -52,6 +52,7 @@
             button2 = new Button();
             pictureBox5 = new PictureBox();
             panel3 = new Panel();
+            label8 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -285,6 +286,7 @@
             // panel2
             // 
             panel2.BackColor = Color.ForestGreen;
+            panel2.Controls.Add(label8);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(pictureBox5);
             panel2.Controls.Add(pnlForm);
@@ -324,6 +326,18 @@
             panel3.Size = new Size(1754, 954);
             panel3.TabIndex = 16;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 35F, FontStyle.Bold | FontStyle.Italic);
+            label8.ForeColor = SystemColors.ButtonHighlight;
+            label8.Location = new Point(126, 19);
+            label8.Name = "label8";
+            label8.Size = new Size(270, 62);
+            label8.TabIndex = 17;
+            label8.Text = "Zoo Bazaar";
+            label8.Click += label8_Click;
+            // 
             // ZooKeeperForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -348,6 +362,7 @@
             pnlForm.ResumeLayout(false);
             pnlForm.PerformLayout();
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
         }
@@ -377,5 +392,6 @@
         private Button button2;
         private Panel panelForm;
         private Panel panel3;
+        private Label label8;
     }
 }

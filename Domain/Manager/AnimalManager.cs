@@ -28,7 +28,22 @@ namespace Domain.Manager
             dalAnimalManager.LoadAnimalsData();
             foreach (List<string> animalData in dalAnimalManager.animalsData)
             {
-                Animal animal = new Animal(Convert.ToInt32(animalData[0]), animalData[1], animalData[3], animalData[4], animalData[5], animalData[6], animalData[2], animalData[7], animalData[8], Convert.ToInt32(animalData[9]), Convert.ToInt32(animalData[10]));
+                int? motherId = string.IsNullOrEmpty(animalData[9]) ? (int?)null : Convert.ToInt32(animalData[9]);
+                int? fatherId = string.IsNullOrEmpty(animalData[10]) ? (int?)null : Convert.ToInt32(animalData[10]);
+
+                Animal animal = new Animal(
+                    Convert.ToInt32(animalData[0]),
+                    animalData[1],
+                    animalData[3],
+                    animalData[4],
+                    animalData[5],
+                    animalData[6],
+                    animalData[2],
+                    animalData[7],
+                    animalData[8],
+                    motherId,
+                    fatherId
+                );
                 animals.Add(animal);
 
             }

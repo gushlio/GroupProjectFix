@@ -28,6 +28,8 @@ namespace Domain.Entity
             Password = password;
         }
 
+        protected User() { }
+
         protected User(int id, string firstName, string lastName, string emailAddress, string password)
         {
             Id = id;

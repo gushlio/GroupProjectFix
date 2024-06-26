@@ -38,7 +38,7 @@ namespace ZooBazarDesktopApp
 
         private void pictureBoxAnimals_Click(object sender, EventArgs e)
         {
-            if (loggedEmployee.Contract.JobTitle == "Manager" || loggedEmployee.Contract.JobTitle == "Caretaker")
+            if (loggedEmployee.Contract.JobTitle == "Manager" || loggedEmployee.Contract.JobTitle == "Caretaker" || loggedEmployee.Contract.JobTitle == "ZooKeeper")
             {
                 ShowForm(new AnimalForm(loggedEmployee));
             }
@@ -143,6 +143,11 @@ namespace ZooBazarDesktopApp
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            ShowForm(new HomeForm(loggedEmployee));
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
             ShowForm(new HomeForm(loggedEmployee));
         }

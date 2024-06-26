@@ -42,6 +42,7 @@
             locationComboBox = new ComboBox();
             contextTextBox = new RichTextBox();
             button1 = new Button();
+            jobTitleComboBox = new ComboBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -187,12 +188,21 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // jobTitleComboBox
+            // 
+            jobTitleComboBox.FormattingEnabled = true;
+            jobTitleComboBox.Location = new Point(702, 52);
+            jobTitleComboBox.Name = "jobTitleComboBox";
+            jobTitleComboBox.Size = new Size(121, 23);
+            jobTitleComboBox.TabIndex = 14;
+            // 
             // AssignTask
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(841, 579);
+            Controls.Add(jobTitleComboBox);
             Controls.Add(button1);
             Controls.Add(contextTextBox);
             Controls.Add(locationComboBox);
@@ -229,5 +239,6 @@
         private ComboBox locationComboBox;
         private RichTextBox contextTextBox;
         private Button button1;
+        private ComboBox jobTitleComboBox;
     }
 }

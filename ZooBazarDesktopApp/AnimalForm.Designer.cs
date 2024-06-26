@@ -157,6 +157,7 @@
             // 
             // flpAnimals
             // 
+            flpAnimals.AutoScroll = true;
             flpAnimals.Location = new Point(14, 42);
             flpAnimals.Name = "flpAnimals";
             flpAnimals.Size = new Size(1242, 557);

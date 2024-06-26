@@ -111,7 +111,7 @@
             // 
             // btnMonday
             // 
-            btnMonday.BackColor = Color.DarkSeaGreen;
+            btnMonday.BackColor = Color.FloralWhite;
             btnMonday.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnMonday.Location = new Point(3, 3);
             btnMonday.Name = "btnMonday";
@@ -364,6 +364,7 @@
             Controls.Add(pictureBox1);
             Name = "ScheduleForm";
             Text = "ScheduleForm";
+            Load += ScheduleForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             flpDay.ResumeLayout(false);
